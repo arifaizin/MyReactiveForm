@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         validateButton()
 
-        tv_email.addTextChangedListener(object : TextWatcher {
+        ed_email.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        tv_password.addTextChangedListener(object : TextWatcher {
+        ed_password.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        tv_confirm_password.addTextChangedListener(object : TextWatcher {
+        ed_confirm_password.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
 
     fun validateEmail() {
         // jika password tidak valid tampilkan peringatan
-        val input = tv_email.text.toString()
+        val input = ed_email.text.toString()
         if (!Patterns.EMAIL_ADDRESS.matcher(input).matches()) {
             emailValid = false
             showEmailExistAlert(true)
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     fun validatePassword() {
         // jika password < 6 karakter tampilkan peringatan
-        val input = tv_password.text.toString()
+        val input = ed_password.text.toString()
         if (input.length < 6) {
             passwordValid = false
             showPasswordMinimalAlert(true)
@@ -86,8 +86,8 @@ class MainActivity : AppCompatActivity() {
 
     fun validatePasswordConfirmation() {
         // jika konfirmasi password tidak sesuai tampilkan peringatan
-        val input = tv_confirm_password.text.toString()
-        if (input != tv_password.text.toString()) {
+        val input = ed_confirm_password.text.toString()
+        if (input != ed_password.text.toString()) {
             passwordConfirmationValid = false
             showPasswordConfirmationAlert(true)
         } else {
@@ -109,14 +109,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showEmailExistAlert(value: Boolean) {
-        tv_email.error = if (value) getString(R.string.email_not_valid) else null
+        ed_email.error = if (value) getString(R.string.email_not_valid) else null
     }
 
     private fun showPasswordMinimalAlert(value: Boolean) {
-        tv_password.error = if (value) getString(R.string.password_not_valid) else null
+        ed_password.error = if (value) getString(R.string.password_not_valid) else null
     }
 
     private fun showPasswordConfirmationAlert(value: Boolean) {
-        tv_confirm_password.error = if (value) getString(R.string.password_not_same) else null
+        ed_confirm_password.error = if (value) getString(R.string.password_not_same) else null
     }
 }
