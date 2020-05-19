@@ -11,7 +11,6 @@ import io.reactivex.Observable
 import io.reactivex.functions.Function3
 import kotlinx.android.synthetic.main.activity_main.*
 
-
 class MainActivity : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
