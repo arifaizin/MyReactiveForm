@@ -19,17 +19,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val emailStream = RxTextView.afterTextChangeEvents(ed_email)
+        val emailStream = RxTextView.textChanges(ed_email)
+            .skipInitialValue()
             .map { email ->
-                !Patterns.EMAIL_ADDRESS.matcher(email.editable().toString()).matches()
+                !Patterns.EMAIL_ADDRESS.matcher(email).matches()
             }
         emailStream.subscribe {
             showEmailExistAlert(it)
         }
 
         val passwordStream = RxTextView.textChanges(ed_password)
+            .skipInitialValue()
             .map { password ->
-                password.toString().length < 6
+                password.length < 6
             }
         passwordStream.subscribe {
             showPasswordMinimalAlert(it)
@@ -56,13 +58,13 @@ class MainActivity : AppCompatActivity() {
             Function3 { emailInvalid: Boolean, passwordInvalid: Boolean, passwordConfirmationInvalid: Boolean ->
                 !emailInvalid && !passwordInvalid && !passwordConfirmationInvalid
             })
-        invalidFieldsStream.subscribe {
-            if (it) {
+        invalidFieldsStream.subscribe { isValid ->
+            if (isValid) {
                 btn_register.isEnabled = true
                 btn_register.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
             } else {
                 btn_register.isEnabled = false
-                btn_register.setBackgroundColor(Color.LTGRAY)
+                btn_register.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
             }
         }
     }
