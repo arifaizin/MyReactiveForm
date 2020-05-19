@@ -104,7 +104,7 @@ class MainActivity : AppCompatActivity() {
             btn_register.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent))
         } else {
             btn_register.isEnabled = false
-            btn_register.setBackgroundColor(Color.LTGRAY)
+            btn_register.setBackgroundColor(ContextCompat.getColor(this, android.R.color.darker_gray))
         }
     }
 
