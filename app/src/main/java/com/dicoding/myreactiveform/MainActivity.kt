@@ -1,6 +1,5 @@
 package com.dicoding.myreactiveform
 
-import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -108,15 +107,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun showEmailExistAlert(value: Boolean) {
-        ed_email.error = if (value) getString(R.string.email_not_valid) else null
+    private fun showEmailExistAlert(isValid: Boolean) {
+        ed_email.error = if (isValid) getString(R.string.email_not_valid) else null
     }
 
-    private fun showPasswordMinimalAlert(value: Boolean) {
-        ed_password.error = if (value) getString(R.string.password_not_valid) else null
+    private fun showPasswordMinimalAlert(isValid: Boolean) {
+        ed_password.error = if (isValid) getString(R.string.password_not_valid) else null
     }
 
-    private fun showPasswordConfirmationAlert(value: Boolean) {
-        ed_confirm_password.error = if (value) getString(R.string.password_not_same) else null
+    private fun showPasswordConfirmationAlert(isValid: Boolean) {
+        ed_confirm_password.error = if (isValid) getString(R.string.password_not_same) else null
     }
 }
